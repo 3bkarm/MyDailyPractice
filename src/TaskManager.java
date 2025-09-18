@@ -1,0 +1,63 @@
+// https://leetcode.com/problems/design-task-manager?envType=daily-question&envId=2025-09-18
+
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.TreeSet;
+
+class TaskManager {
+    private final int RangeOfTaskIds = 100_001;
+    private int[] TaskUser = new int[RangeOfTaskIds];
+    private int[] TaskPriority = new int[RangeOfTaskIds];
+    private TreeSet<Integer> OrderTasksByPriority = new TreeSet<>( (a, b) -> {
+        if (TaskPriority[a] == TaskPriority[b]) {
+            return b - a;
+        }
+        return TaskPriority[b] - TaskPriority[a];
+    } );
+
+    public TaskManager(List<List<Integer>> tasks) {
+        for (List<Integer> task : tasks) {
+            int userId = task.get(0);
+            int taskId = task.get(1);
+            int priority = task.get(2);
+            add(userId, taskId, priority);
+        }
+    }
+
+    public void add(int userId, int taskId, int priority) {
+        TaskUser[taskId] = userId;
+        TaskPriority[taskId] = priority;
+        OrderTasksByPriority.add(taskId);
+    }
+
+    public void edit(int taskId, int newPriority) {
+        OrderTasksByPriority.remove(taskId);
+        TaskPriority[taskId] = newPriority;
+        OrderTasksByPriority.add(taskId);
+    }
+
+    public void rmv(int taskId) {
+        OrderTasksByPriority.remove(taskId);
+        TaskUser[taskId] = TaskPriority[taskId] = 0;
+    }
+
+    public int execTop() {
+        if ( OrderTasksByPriority.isEmpty() ) {
+            return -1;
+        }
+        int taskId = OrderTasksByPriority.first();
+        OrderTasksByPriority.removeFirst();
+        int userId = TaskUser[taskId];
+        rmv(taskId);
+        return userId;
+    }
+}
+
+/**
+ * Your TaskManager object will be instantiated and called as such:
+ * TaskManager obj = new TaskManager(tasks);
+ * obj.add(userId,taskId,priority);
+ * obj.edit(taskId,newPriority);
+ * obj.rmv(taskId);
+ * int param_4 = obj.execTop();
+ */
