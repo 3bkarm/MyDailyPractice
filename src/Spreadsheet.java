@@ -4,7 +4,7 @@ class Spreadsheet {
     private int[][] Cells;
 
     public Spreadsheet(int rows) {
-        Cells = new int[rows + 1][26];
+        this.Cells = new int[rows + 1][26];
     }
 
     private int getNumber(String s) {

@@ -1,0 +1,85 @@
+// https://leetcode.com/problems/implement-router?envType=daily-question&envId=2025-09-20
+
+import java.util.*;
+
+class Router {
+    private int memoryLimit;
+    private Queue<int[]> packetsQueue;
+    private TreeSet<int[]> packets;
+    private HashMap<Integer, Integer> startIndex;
+    private HashMap< Integer, ArrayList<Integer> > adj;
+
+    public Router(int memoryLimit) {
+        this.memoryLimit = memoryLimit;
+        this.packetsQueue = new LinkedList<>();
+        this.packets = new TreeSet<>( (a, b) -> {
+            for (int i = 0; i < 3; ++i) {
+                if (a[i] != b[i]) {
+                    return a[i] - b[i];
+                }
+            }
+            return 0;
+        } );
+        this.startIndex = new HashMap<>();
+        this.adj = new HashMap<>();
+    }
+
+    public boolean addPacket(int source, int destination, int timestamp) {
+        int[] t = new int[]{ source, destination, timestamp };
+        if ( packets.isEmpty() || !packets.contains(t) ) {
+            if ( packets.size() == memoryLimit ) {
+                var ignore = forwardPacket();
+            }
+            packetsQueue.add(t);
+            packets.add(t);
+            if ( !adj.containsKey(destination) ) {
+                startIndex.put(destination, 0);
+                adj.put( destination, new ArrayList<>() );
+            }
+            adj.get(destination).add(timestamp);
+            return true;
+        }
+        return false;
+    }
+
+    public int[] forwardPacket() {
+        if ( packetsQueue.isEmpty() ) {
+            return new int[]{};
+        }
+        int[] t = packetsQueue.poll();
+        int ix = startIndex.get(t[1]);
+        startIndex.put(t[1], ix + 1);
+        packets.remove(t);
+        return t;
+    }
+
+    private int get(int destination, int compare) {
+        int lo = startIndex.get(destination), hi = adj.get(destination).size() - 1, ans = lo - 1;
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            if ( adj.get(destination).get(mid) <= compare ) {
+                ans = mid;
+                lo = mid + 1;
+            } else {
+                hi = mid - 1;
+            }
+        }
+        return ans;
+    }
+
+    public int getCount(int destination, int startTime, int endTime) {
+        if ( !adj.containsKey(destination) ) {
+            return 0;
+        }
+        return get(destination, endTime) - get(destination, startTime - 1);
+    }
+
+}
+
+/**
+ * Your Router object will be instantiated and called as such:
+ * Router obj = new Router(memoryLimit);
+ * boolean param_1 = obj.addPacket(source,destination,timestamp);
+ * int[] param_2 = obj.forwardPacket();
+ * int param_3 = obj.getCount(destination,startTime,endTime);
+ */
