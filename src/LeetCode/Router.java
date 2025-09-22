@@ -1,3 +1,5 @@
+package LeetCode;
+
 // https://leetcode.com/problems/implement-router?envType=daily-question&envId=2025-09-20
 
 import java.util.*;
@@ -77,8 +79,8 @@ class Router {
 }
 
 /**
- * Your Router object will be instantiated and called as such:
- * Router obj = new Router(memoryLimit);
+ * Your LeetCode.Design.Router object will be instantiated and called as such:
+ * LeetCode.Design.Router obj = new LeetCode.Design.Router(memoryLimit);
  * boolean param_1 = obj.addPacket(source,destination,timestamp);
  * int[] param_2 = obj.forwardPacket();
  * int param_3 = obj.getCount(destination,startTime,endTime);

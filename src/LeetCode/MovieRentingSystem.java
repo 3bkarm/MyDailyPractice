@@ -1,3 +1,5 @@
+package LeetCode;
+
 //https://leetcode.com/problems/design-movie-rental-system?envType=daily-question&envId=2025-09-21
 
 import java.util.*;
@@ -91,8 +93,8 @@ class MovieRentingSystem {
 }
 
 /**
- * Your MovieRentingSystem object will be instantiated and called as such:
- * MovieRentingSystem obj = new MovieRentingSystem(n, entries);
+ * Your LeetCode.Design.MovieRentingSystem object will be instantiated and called as such:
+ * LeetCode.Design.MovieRentingSystem obj = new LeetCode.Design.MovieRentingSystem(n, entries);
  * List<Integer> param_1 = obj.search(movie);
  * obj.rent(shop,movie);
  * obj.drop(shop,movie);

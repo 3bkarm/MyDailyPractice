@@ -1,3 +1,5 @@
+package LeetCode;
+
 // https://leetcode.com/problems/design-spreadsheet?envType=daily-question&envId=2025-09-19
 
 class Spreadsheet {
@@ -50,8 +52,8 @@ class Spreadsheet {
 }
 
 /**
- * Your Spreadsheet object will be instantiated and called as such:
- * Spreadsheet obj = new Spreadsheet(rows);
+ * Your LeetCode.Design.Spreadsheet object will be instantiated and called as such:
+ * LeetCode.Design.Spreadsheet obj = new LeetCode.Design.Spreadsheet(rows);
  * obj.setCell(cell,value);
  * obj.resetCell(cell);
  * int param_3 = obj.getValue(formula);

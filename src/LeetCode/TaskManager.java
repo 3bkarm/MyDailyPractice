@@ -1,7 +1,6 @@
-// https://leetcode.com/problems/design-task-manager?envType=daily-question&envId=2025-09-18
+package LeetCode;// https://leetcode.com/problems/design-task-manager?envType=daily-question&envId=2025-09-18
 
 import java.util.List;
-import java.util.PriorityQueue;
 import java.util.TreeSet;
 
 class TaskManager {
@@ -54,8 +53,8 @@ class TaskManager {
 }
 
 /**
- * Your TaskManager object will be instantiated and called as such:
- * TaskManager obj = new TaskManager(tasks);
+ * Your LeetCode.Design.TaskManager object will be instantiated and called as such:
+ * LeetCode.Design.TaskManager obj = new LeetCode.Design.TaskManager(tasks);
  * obj.add(userId,taskId,priority);
  * obj.edit(taskId,newPriority);
  * obj.rmv(taskId);
