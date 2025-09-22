@@ -3,7 +3,7 @@ package LeetCode;// https://leetcode.com/problems/design-task-manager?envType=da
 import java.util.List;
 import java.util.TreeSet;
 
-class TaskManager {
+class LC3408 {
     private final int RangeOfTaskIds = 100_001;
     private int[] TaskUser = new int[RangeOfTaskIds];
     private int[] TaskPriority = new int[RangeOfTaskIds];
@@ -14,7 +14,7 @@ class TaskManager {
         return TaskPriority[b] - TaskPriority[a];
     } );
 
-    public TaskManager(List<List<Integer>> tasks) {
+    public LC3408(List<List<Integer>> tasks) {
         for (List<Integer> task : tasks) {
             int userId = task.get(0);
             int taskId = task.get(1);

@@ -4,12 +4,12 @@ package LeetCode;
 
 import java.util.*;
 
-class MovieRentingSystem {
+class LC1912 {
     private HashMap< Integer, HashMap<Integer, Integer> > MoviesInShop;
     private HashMap< Integer, TreeSet<int[]> > ShopsHaveMovie;
     private TreeSet<int[]> RentedMovies;
 
-    public MovieRentingSystem(int n, int[][] entries) {
+    public LC1912(int n, int[][] entries) {
         this.MoviesInShop = new HashMap<>();
         this.ShopsHaveMovie = new HashMap<>();
         this.RentedMovies = new TreeSet<>( (a, b) -> {

@@ -2,7 +2,7 @@ package LeetCode;
 
 import java.util.Arrays;
 
-public class Solution {
+public class LC3005 {
 
     // https://leetcode.com/problems/count-elements-with-maximum-frequency?envType=daily-question&envId=2025-09-22
 

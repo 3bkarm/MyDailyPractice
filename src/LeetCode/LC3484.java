@@ -2,10 +2,10 @@ package LeetCode;
 
 // https://leetcode.com/problems/design-spreadsheet?envType=daily-question&envId=2025-09-19
 
-class Spreadsheet {
+class LC3484 {
     private int[][] Cells;
 
-    public Spreadsheet(int rows) {
+    public LC3484(int rows) {
         this.Cells = new int[rows + 1][26];
     }
 

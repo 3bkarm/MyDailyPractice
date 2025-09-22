@@ -4,14 +4,14 @@ package LeetCode;
 
 import java.util.*;
 
-class Router {
+class LC3508 {
     private int memoryLimit;
     private Queue<int[]> packetsQueue;
     private TreeSet<int[]> packets;
     private HashMap<Integer, Integer> startIndex;
     private HashMap< Integer, ArrayList<Integer> > adj;
 
-    public Router(int memoryLimit) {
+    public LC3508(int memoryLimit) {
         this.memoryLimit = memoryLimit;
         this.packetsQueue = new LinkedList<>();
         this.packets = new TreeSet<>( (a, b) -> {
