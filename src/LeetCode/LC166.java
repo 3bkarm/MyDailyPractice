@@ -1,0 +1,88 @@
+package LeetCode;
+
+import java.util.HashMap;
+
+public class LC166 {
+
+    // https://leetcode.com/problems/fraction-to-recurring-decimal?envType=daily-question&envId=2025-09-24
+
+    public String fractionToDecimal(long numerator, long denominator) {
+        if (numerator == 0) {
+            return "0";
+        }
+
+        boolean negative = false;
+        if (numerator < 0) {
+            negative = !negative;
+            numerator *= -1;
+        }
+        if (denominator < 0) {
+            negative = !negative;
+            denominator *= -1;
+        }
+
+        boolean dot = false;
+        int p = 0, repeat = -1;
+        StringBuilder s = new StringBuilder();
+        HashMap<Long, Integer> mp = new HashMap<>();
+        if (negative) {
+            s.append('-');
+            ++p;
+        }
+
+        while (numerator > 0) {
+            int c = 0;
+            long f = 1;
+            while (numerator * f < denominator) {
+                f *= 10;
+                ++c;
+            }
+
+            if ( mp.containsKey(numerator) ) {
+                repeat = mp.get(numerator);
+                break;
+            }
+
+            if (c > 0 && !dot) {
+                if (p == 0) {
+                    s.append('0');
+                    ++p;
+                }
+                s.append('.');
+                dot = true;
+                ++p;
+            }
+
+            mp.put(numerator, p);
+            numerator *= f;
+
+            while (c > 1) {
+                s.append('0');
+                ++p;
+                --c;
+            }
+
+            long value = numerator / denominator;
+            numerator = numerator - value * denominator;
+
+            StringBuilder v = new StringBuilder();
+            while (value > 0) {
+                int digit = (int)(value % 10);
+                v.append( (char)('0' + digit) );
+                value /= 10;
+                ++p;
+            }
+
+            int m = v.length();
+            for (int i = m - 1; i >= 0; --i) {
+                s.append( v.charAt(i) );
+            }
+        }
+        if (repeat != -1) {
+            s.insert(repeat, '(');
+            s.append(')');
+        }
+        return new String(s);
+    }
+
+}

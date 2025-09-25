@@ -1,0 +1,34 @@
+package LeetCode;
+
+import java.util.List;
+
+public class LC120 {
+
+    // https://leetcode.com/problems/triangle?envType=daily-question&envId=2025-09-25
+
+    public int minimumTotal(List<List<Integer>> triangle) {
+        int levels = triangle.size();
+        int[][] dp = new int[levels][];
+        for (int i = 0; i < levels; ++i) {
+            dp[i] = new int[i + 1];
+        }
+        dp[0][0] = triangle.get(0).get(0);
+        for (int i = 1; i < levels; ++i) {
+            for (int j = 0; j <= i; ++j) {
+                dp[i][j] = Integer.MAX_VALUE;
+                if (j < i) {
+                    dp[i][j] = Math.min(dp[i][j], triangle.get(i).get(j) + dp[i - 1][j]);
+                }
+                if (j - 1 >= 0) {
+                    dp[i][j] = Math.min(dp[i][j], triangle.get(i).get(j) + dp[i - 1][j - 1]);
+                }
+            }
+        }
+        int ans = Integer.MAX_VALUE;
+        for (int i = 0; i < levels; ++i) {
+            ans = Math.min(ans, dp[levels - 1][i]);
+        }
+        return ans;
+    }
+
+}
