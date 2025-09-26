@@ -1,0 +1,28 @@
+package LeetCode;
+
+import java.util.Arrays;
+
+public class LC611 {
+
+    // https://leetcode.com/problems/valid-triangle-number?envType=daily-question&envId=2025-09-26
+
+    public int triangleNumber(int[] nums) {
+        Arrays.sort(nums);
+        int n = nums.length, ans = 0, count = 0;
+        int freq[] = new int[1001];
+        for (int i = n - 1; i >= 0; --i) {
+            int k = 1000, add = count;
+            for (int j = i - 1; j >= 0; --j) {
+                while (k >= nums[i] + nums[j]) {
+                    add -= freq[k];
+                    --k;
+                }
+                ans += add;
+            }
+            ++freq[ nums[i] ];
+            ++count;
+        }
+        return ans;
+    }
+
+}
